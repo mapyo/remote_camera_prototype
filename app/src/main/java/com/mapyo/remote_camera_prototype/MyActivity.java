@@ -4,13 +4,15 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
-
+import android.widget.Button;
+import android.widget.Toast;
 
 
 public class MyActivity extends Activity {
@@ -51,6 +53,12 @@ public class MyActivity extends Activity {
      */
     public static class PlaceholderFragment extends Fragment {
 
+        private View.OnClickListener clicked = new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("Button", "onClick");
+            }
+        };
+
         public PlaceholderFragment() {
         }
 
@@ -58,6 +66,10 @@ public class MyActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_my, container, false);
+
+            Button btn = (Button)rootView.findViewById(R.id.button);
+            btn.setOnClickListener(clicked);
+
             return rootView;
         }
     }
